@@ -224,7 +224,7 @@ def call_voice_notes_routine(filename):
 #def call_voice_notes_routine(filename):
 
 def call_отправить_карту_партнёра(emailname):
-       url="https://e.mail.ru/compose?To="+str(emailname.strip())#"+'&subject=карта партнёра «МГ ЭКСПОРТ-ИМПОРТ»"'
+       url="https://e.mail.ru/compose?To="+str(emailname.strip())#"+'&subject=карта партнёра «»"'
        subprocess.call(['cmd', '/c', r"C:\Program Files\Google\Chrome\Application\chrome.exe", url])
        import win32com.client
        import win32file
