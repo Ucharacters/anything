@@ -523,27 +523,7 @@ def работа_с_документом_ms_word(where_to_put,itemi):
     morph = pymorphy2.MorphAnalyzer()
     #По умолчанию используется словарь для русского языка; 
 
-##    butyavka = morph.parse('бутявка')[0]
-##
-##
-##    #Получив объект Parse, можно просклонять слово, используя его метод Parse.inflect():
-##    print(butyavka.inflect({'gent'}) ) # нет кого? (родительный падеж)
-##
-##    #письмо datv дательный Кому? Чему?  
-##    print(morph.parse('Генеральный')[0].inflect({'sing', 'datv'}).word )
-##    print(morph.parse('директор')[0].inflect({'sing', 'datv'}).word )
-##
-##    #в лице gent родительный Кого? Чего? 
-##    print(morph.parse('Генеральный')[0].inflect({'sing', 'gent'}).word)
-##    print(morph.parse('директор')[0].inflect({'sing', 'gent'}).word)
-##
-##
-##    position_phrase="Старший исполнительный директор"
-##    position_phrase_inflected=""
-##    for single_word in position_phrase.split(" "):
-##        position_phrase_inflected+=morph.parse(single_word)[0].inflect({'sing', 'datv'}).word+" "
-##
-##    print(position_phrase_inflected[0:1].upper()+position_phrase_inflected[1:])
+
     #============================MorphAnalyzer
     arr_all_files=[0]
     for file in win32file.FindFilesW(workingdirectory+"\*.doc*", Transaction=None ):
@@ -610,7 +590,7 @@ def создание_простого_договора(инн_продавца, 
         print(инн_продавца)
         print(инн_покупателя)
         #Запрашиваем ИНН продавца
-        request=json.loads(simple_http_get("https://api.checko.ru/json?object=organization&key=hakZwNakig1eEoF3o6augQ&ogrn=&inn="+str(инн_продавца)+"&kpp=&source=false"))
+        request=json.loads(simple_http_get("https://api.checko.ru/json?object=organization&key=hagQ&ogrn=&inn="+str(инн_продавца)+"&kpp=&source=false"))
         phrase_inflected=""
         phrase_inflected+=str(request['data']['name'])
         phrase_inflected+=", именуемое в дальнейшем изложении «Продавец», в лице "
@@ -637,7 +617,7 @@ def создание_простого_договора(инн_продавца, 
         phrase_inflected+=", действующего на основании Устава, с одной стороны и "
         time.sleep(5)
         #Запрашиваем ИНН покупателя
-        request=json.loads(simple_http_get("https://api.checko.ru/json?object=organization&key=hakZwNakig1eEoF3o6augQ&ogrn=&inn="+str(инн_покупателя)+"&kpp=&source=false"))
+        request=json.loads(simple_http_get("https://api.checko.ru/json?object=organization&key=hakZQ&ogrn=&inn="+str(инн_покупателя)+"&kpp=&source=false"))
         phrase_inflected+=str(request['data']['name'])
         phrase_inflected+=", именуемое в дальнейшем изложении «Покупатель», в лице "
         #реквизиты 

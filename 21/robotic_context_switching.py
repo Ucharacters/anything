@@ -284,85 +284,6 @@ def get_answer_by_intent(intent):
         return random.choice(responses)
 
 
-#generative model
-##with open('dialogues.txt') as dialogues_file:
-##    dialogues_text = dialogues_file.read()
-##dialogues = dialogues_text.split('\n\n')
-
-
-def clear_text(text):
-    text = text.lower()
-    text = ''.join(char for char in text if char in 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя -')
-    return text
-
-##dataset = []  # [[question, answer], ...]
-##questions = set()
-##
-##for dialogue in dialogues:
-##    replicas = dialogue.split('\n')
-##    replicas = replicas[:2]
-##
-##    if len(replicas) == 2:
-##        question, answer = replicas
-##        question = clear_text(question[2:])
-##        answer = answer[2:]
-##
-##        if len(question) > 0 and question not in questions:
-##            questions.add(question)
-##            dataset.append([question, answer])
-##
-##
-### In[3]:
-##
-##
-##dataset_by_word = {}  # {word: [[question with word, answer], ...], ...}
-##
-##for question, answer in dataset:
-##    words = question.split(' ')
-##    for word in words:
-##        if word not in dataset_by_word:
-##            dataset_by_word[word] = []
-##        dataset_by_word[word].append([question, answer])
-##
-##dataset_by_word_filtered = {}
-##for word, word_dataset in dataset_by_word.items():
-##    word_dataset.sort(key=lambda pair: len(pair[0]))
-##    dataset_by_word_filtered[word] = word_dataset[:1000]
-##
-##
-### In[19]:
-##
-##
-##def generate_answer(replica):
-##    replica = clear_text(replica)
-##    if not replica:
-##        return
-##
-##    words = set(replica.split(' '))
-##    words_dataset = []
-##    for word in words:
-##        if word in dataset_by_word_filtered:
-##            word_dataset = dataset_by_word_filtered[word]
-##            words_dataset += word_dataset
-##
-##    results = []  # [[question, answer, distance], ...]
-##    for question, answer in words_dataset:
-##        if abs(len(question) - len(replica)) / len(question) < 0.2:
-##            distance = nltk.edit_distance(replica, question)
-##            if distance / len(question) < 0.2:
-##                results.append([question, answer, distance])
-##    
-##    question, answer, distance = min(results, key=lambda three: three[2])
-##    return answer
-##
-##
-### #### stubs
-def get_stub():
-    failure_phrases = BOT_CONFIG['failure_phrases']
-    return random.choice(failure_phrases)
-
-
-# #### bot logic
 state_machine_processor_bot_metrics = {'intents': 0, 'generative': 0, 'stubs': 0}
 
 def state_machine_processor_bot(replica):
@@ -375,11 +296,7 @@ def state_machine_processor_bot(replica):
             state_machine_processor_bot_metrics['intents'] += 1
             return answer
 
-##    # генеративная модель
-##    answer = generate_answer(replica)
-##    if answer:
-##        state_machine_processor_bot_metrics['generative'] += 1
-##        return answer
+
 
     # заглушка
     answer = get_stub()
