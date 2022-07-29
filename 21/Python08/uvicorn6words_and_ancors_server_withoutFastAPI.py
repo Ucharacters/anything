@@ -63,7 +63,7 @@ def generate_html_response(request):
             pass
         
 
-    print("INFO: All ancors replaced")
+    print("INFO: All ancors replaced with URL")
     
 ##    print(doc.prettify())
     process_time = time.time() - start_time
